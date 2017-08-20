@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <% restaurants.forEach(function(restaurant) { %>
+        <div>
+                <h1><%=restaurant.name %></h1>
+                <h2><%=restaurant.price %></h2>
+                <img src=<%=restaurant.image %>></img>
+                <a href="/restaurants/<%= restaurant._id %>">More Info</a>
+        </div>
+        <% }); %>
+    </body>
+</html>

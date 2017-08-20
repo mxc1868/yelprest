@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div>
+            <form action="/restaurants/<%= restaurantId %>/comments/<%= comment._id%>?_method=PUT" method="POST">
+                <input class="form-control" type="text" name="comment[text]" value="<%=comment.text%>">
+                <button>Submit!</button>
+            </form>
+        </div>
+    </body>
+</html>            
+            

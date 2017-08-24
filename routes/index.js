@@ -4,17 +4,22 @@ var passport = require("passport");
 var UserSchema = require("../models/users");
 
 router.get("/", function(req, res) {
-   res.send("<h1>Hi</h1>");
+   res.render("mainpages/mainpage");
 });
 router.get("/login", function(req, res) {
    res.render("mainpages/login"); 
 });
 router.post("/login", passport.authenticate("local", {
-        successRedirect: "/restaurants",
-        failurRedirect: "/login"
-    }), function(req, res) {
-    
-});
+        failWithError: true
+    }), function(req, res, next) {
+        req.flash("success", "Welcome to YelpRestaurant " + req.user.username);
+        res.redirect("/restaurants");
+    }, function(err, req, res, next) {
+    // handle error
+        console.log(err);
+        req.flash("error", "Fail to Login. Please Try Again");
+        res.redirect('/login');
+  });
 router.get("/signup", function(req, res) {
    res.render("mainpages/signup"); 
 });
@@ -31,5 +36,10 @@ router.post("/signup", function(req, res) {
         });
        }
     });
+});
+router.get("/logout", function(req, res){
+   req.logout();
+   req.flash("success", "Logged you out!");
+   res.redirect("/restaurants");
 });
 module.exports = router;

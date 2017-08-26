@@ -20,7 +20,6 @@ router.get("/:id", function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(populatedResult);
             res.render("restaurants/details", {restaurant :populatedResult});
         }
     });

@@ -1,3 +1,4 @@
+
 .thumbnail img {
     width: 100%;
 }
@@ -12,4 +13,44 @@
 
 #delete-form {
     display: inline;
+}
+
+
+.carousel-item {
+    height: 35vw;
+}
+
+
+.carousel-item img {
+position: absolute;
+width: 100%;
+top: 0;  
+bottom: 0;  
+left: 0;  
+right: 0;  
+margin: auto;
+}
+
+#caption1 {
+    width: 30%;
+    left: 50%;
+    bottom: 7vw;
+}
+#caption1 h1, #caption2 h1, #caption3 h1{
+    font-size: 3.5vw;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+}
+#caption1 p, #caption2 p, #caption3 p{
+    font-size: 1.5vw;
+}
+#caption2 {
+    width: 40%;
+    margin:auto;
+    bottom: 5vw;
+    color: #2b2b2b;
+}
+#caption3 {
+    width: 30%;
+    left: 60%;
+    bottom: 9vw;
 }

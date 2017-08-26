@@ -1,3 +1,8 @@
-.text-center {
-    text-align: center;
+.formCenter {
+    width: 30%;
+    margin: auto;
+}
+
+body {
+    margin-top: 150px;
 }

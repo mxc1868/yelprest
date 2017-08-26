@@ -1,12 +1,13 @@
 body {
   background-color: #000;
+  margin-top: 50px;
 }
 
 #landing-header {
   z-index: 1;
   position: relative;
   text-align: center;
-  padding-top: 40vh;
+  padding-top: 30vh;
 }
 
 #landing-header h1 {

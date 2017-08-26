@@ -1,28 +1,67 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%- include ../partials/head %>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/detail.css">
+        
+
     </head>
     <body>
-        <div>
-                <h1><%=restaurant.name %></h1>
-                <h2><%=restaurant.price %></h2>
-                <img src=<%=restaurant.image %>></img>
-                <p><%=restaurant.description %></p>
-                <a href="/restaurants/<%= restaurant._id%>/update">edit</a>
-                <form action="/restaurants/<%= restaurant._id%>?_method=DELETE" method=POST>
-                    <button>Delete</button>
-                </form>
-                <ul>
-                <% restaurant.comments.forEach(function(comment) { %>
-                    <li>
-                        <%= comment.text %> - <%= comment.author.username%> 
-                        <a href="/restaurants/<%= restaurant._id%>/comments/<%=comment._id%>/update">edit</a>
-                        <form action="/restaurants/<%= restaurant._id%>/comments/<%=comment._id%>?_method=DELETE" method=POST>
-                            <button>Delete</button>
-                        </form>
-                        </li>
-                <% }); %>
-                </ul>
+        <%- include ../partials/nav %>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <li class="list-group-item active">Info 1</li>
+                        <li class="list-group-item">Info 2</li>
+                        <li class="list-group-item">Info 3</li>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="<%= restaurant.image %>">
+                        <div class="caption-full">
+                            <h4 class="pull-right">$<%= restaurant.price %>/person</h4>
+                            <h4><a><%=restaurant.name%></a></h4>
+                            <p><%= restaurant.description %></p>
+                            <p>
+                                <em>Submitted By <%= restaurant.author.username %></em>
+                            </p>
+                            <% if(currentUser && restaurant.author.id && restaurant.author.id.equals(currentUser._id)){ %>
+                                <a class="btn btn-xs btn-warning" href="/restaurants/<%= restaurant._id %>/update">Edit</a>
+                                <form id="delete-form" action="/restaurants/<%= restaurant._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-xs btn-danger">Delete</button>
+                                </form>
+                            <% }%>
+                        </div>
+                    </div>
+                    <div class="well">
+                        <div class="text-right">
+                            <a class="btn btn-success" href="/restaurants/<%= restaurant._id %>/comments/new">Add New Comment</a>
+                        </div>
+                        <hr>
+                        <% restaurant.comments.forEach(function(comment){ %>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong><%= comment.author.username %></strong>
+                                    <span class="pull-right">10 days ago</span>
+                                    <p>
+                                        <%= comment.text %> 
+                                    </p>
+                                <% if(currentUser && comment.author.id && comment.author.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-xs btn-warning" 
+                                       href="/restaurants/<%=restaurant._id %>/comments/<%=comment._id %>/update">Edit</a>
+                                    <form id="delete-form" action="/restaurants/<%=restaurant._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form>
+                                <% } %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

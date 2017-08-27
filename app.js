@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
     res.locals.success = req.flash("success");
     next();
 });
-seed();
+// seed();
 //====================
 //      Route
 //====================

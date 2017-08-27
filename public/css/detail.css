@@ -1,3 +1,28 @@
 body {
         margin-top: 100px;
 }
+
+#delete-form {
+    display: inline;
+}
+.well {
+    padding: 9px;
+}
+.thumbnail img {
+    width: 100%;
+    margin: auto;
+}
+
+.thumbnail {
+    position: relative;
+    padding: 0;
+	overflow: hidden;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.comments-messages {
+    font-size: 1.3em;
+}

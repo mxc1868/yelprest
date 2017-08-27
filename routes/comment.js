@@ -38,16 +38,17 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
       }
    });
 })
-router.get("/:commentId/update", function(req, res) {
+router.get("/:commentId/update", middleware.checkCommentOwnership, function(req, res) {
    CommentSchema.findById(req.params.commentId, function(err, result) {
        if (err) {
           console.log(err);
+          res.redirect("back");
        } else {
           res.render("comments/update", {restaurantId: req.params.id, comment: result});
        }
    })
 });
-router.put("/:commentId", function(req, res) {
+router.put("/:commentId", middleware.checkCommentOwnership,function(req, res) {
    CommentSchema.findByIdAndUpdate(req.params.commentId, req.body.comment, function(err, result) {
        if (err) {
           console.log(err);
@@ -56,7 +57,7 @@ router.put("/:commentId", function(req, res) {
        }
    })
 })
-router.delete("/:commentId", function(req, res) {
+router.delete("/:commentId", middleware.checkCommentOwnership, function(req, res) {
    CommentSchema.findByIdAndRemove(req.params.commentId, function(err, result) {
        if (err) {
           console.log(err);

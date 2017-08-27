@@ -24,7 +24,7 @@ router.get("/:id", function(req, res) {
         }
     });
 });
-router.get("/:id/update", function(req, res) {
+router.get("/:id/update",middleware.checkRestaurantOwnership, function(req, res) {
     RestaurantSchema.findById(req.params.id, function(err, result) {
         if (err) {
             console.log(err);
@@ -33,7 +33,7 @@ router.get("/:id/update", function(req, res) {
         }
     });
 });
-router.put("/:id", function(req, res) {
+router.put("/:id",middleware.checkRestaurantOwnership ,function(req, res) {
     RestaurantSchema.findByIdAndUpdate(req.params.id, req.body.restaurant, function(err, result) {
         if (err) {
             console.log(err);
@@ -61,7 +61,7 @@ router.post("/", middleware.isLoggedIn , function(req, res) {
       }
     });
 });
-router.delete("/:id", function(req, res) {
+router.delete("/:id", middleware.checkRestaurantOwnership, function(req, res) {
     RestaurantSchema.findByIdAndRemove(req.params.id, function(err, result) {
         res.redirect("/restaurants");
     })

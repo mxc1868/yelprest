@@ -39,7 +39,7 @@ router.post("/signup", function(req, res) {
 });
 router.get("/logout", function(req, res){
    req.logout();
-   req.flash("success", "Logged you out!");
+   req.flash("success", "You have logged out!");
    res.redirect("/restaurants");
 });
 module.exports = router;
